@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AddComponent {
 
+  save() {
+    // Some logic here
+  }
 }

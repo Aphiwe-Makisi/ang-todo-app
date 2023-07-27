@@ -1,1 +1,25 @@
-<p>add works!</p>
+<div class="container mt-3 bg-white rounded pt-3 pb-3">
+  <h1 class="text-center">Add new todo</h1>
+
+  <form class="form mt-3" (ngSubmit)="save()">
+    <div class="form-group mb-2">
+      <label for="name" class="form-label">Title</label>
+      <input type="text" class="form-control" placeholder="Title">
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" cols="30" rows="10" placeholder="Description"></textarea>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="form-label">Due date</label>
+      <input type="date" class="form-control">
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+    </div>
+  </form>
+  
+</div>

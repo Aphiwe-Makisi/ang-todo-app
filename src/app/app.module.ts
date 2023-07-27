@@ -9,6 +9,7 @@ import { AddComponent } from './components/add/add.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ViewComponent } from './components/view/view.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,11 +19,12 @@ import { ViewComponent } from './components/view/view.component';
     AddComponent,
     ArchiveComponent,
     NotFoundComponent,
-    ViewComponent
+    ViewComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
