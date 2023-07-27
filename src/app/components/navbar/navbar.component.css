@@ -4,11 +4,6 @@
   transition: background-color 0.5s ease-in-out;
 }
 
-.mid:hover, .last:hover, .first:hover {
-  background-color: #a8a8a8;
-  
-}
-
 .active {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
