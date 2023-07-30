@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="text-center">
-    <button class="btn btn-danger"><i class="fa-solid fa-trash"></i> Delete All</button>
+  <div class="text-center" >
+    <button [disabled]="archive.length === 0" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Delete All</button>
   </div>
   <div class="row mt-4" *ngIf="archive.length !== 0; else empty">
 
@@ -29,8 +29,8 @@
   </div>
 
   <ng-template #empty>
-    <h1 class="text-center mt-3 alert alert-dark">
-      😆 The archive is empty at the moment. 😆
-    </h1>
+    <h5 class="text-center mt-3 alert alert-dark">
+      😆The archive is empty.😆
+    </h5>
   </ng-template>
 </div>
