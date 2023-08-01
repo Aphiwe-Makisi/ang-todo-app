@@ -1,5 +1,8 @@
 export interface Todo {
-
-  status: boolean
-  
+  id?: string,
+  title: string,
+  description: string,
+  dateCreated: string,
+  dueDate: string,
+  completed: boolean,  
 }

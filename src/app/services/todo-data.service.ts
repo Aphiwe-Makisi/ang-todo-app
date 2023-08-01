@@ -1,25 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoDataService {
 
-  url: string = 'https://angulartodo-e8d78-default-rtdb.firebaseio.com/'
-  dataBaseItems: Array<string> = ['todos', 'archive']
+  private url: string = 'https://angulartodo-e8d78-default-rtdb.firebaseio.com'
+  private dataBaseFolders: Array<string> = ['todos', 'archive']
 
   constructor(private http: HttpClient) { }
 
   fetchAll() {
-    // login here
+    // logic here
   }
 
-  add(todo: any) {
-     this.http.post(`${this.url}/todos`, todo)
+  add(todo: any): Observable<any> {
+     return this.http.post(`${this.url}/${this.dataBaseFolders[0]}.json`, todo)
   }
 
-  edit() {
+  edit(){
     // logic here 
   }
 
