@@ -1,6 +1,6 @@
 <div class="container">
   <div class="text-center" >
-    <button [disabled]="archive.length === 0" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Delete All</button>
+    <button [disabled]="archive.length === 0" class="btn btn-danger" (click)="delete()"><i class="fa-solid fa-trash"></i> Delete All</button>
   </div>
   <div class="row mt-4" *ngIf="archive.length !== 0; else empty">
 

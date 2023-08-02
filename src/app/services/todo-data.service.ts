@@ -8,7 +8,7 @@ import { Observable, map } from 'rxjs';
 export class TodoDataService {
 
   private url: string = 'https://angulartodo-e8d78-default-rtdb.firebaseio.com'
-  private dataBaseFolders: Array<string> = ['todos', 'archive']
+  private dataBaseFolders: Array<string> = ['active', 'archive']
 
   constructor(private http: HttpClient) { }
 
@@ -17,11 +17,11 @@ export class TodoDataService {
   }
 
   add(todo: any): Observable<any> {
-     return this.http.post(`${this.url}/${this.dataBaseFolders[0]}.json`, todo)
+     return this.http.post(`${this.url}/todos/${this.dataBaseFolders[0]}.json`, todo)
   }
 
-  edit(){
-    // logic here 
+  edit(id: string) {
+    // logic here
   }
 
   delete() {
@@ -33,8 +33,12 @@ export class TodoDataService {
     // logic here 
   }
 
-  deleteAll() {
-    // logic here 
+  emptyArchive(): Observable<any> {
+    return this.http.delete(`${this.url}/todos/${this.dataBaseFolders[1]}.json`)
+  }
+
+  moveToArchive() {
+
   }
 
 }

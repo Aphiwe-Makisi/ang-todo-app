@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TodoDataService } from 'src/app/services/todo-data.service';
 
 @Component({
   selector: 'app-archive',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
 })
 export class ArchiveComponent {
 
-  archive: any[] = []
+  constructor(private todoDataSerive: TodoDataService) {}
+
+  archive: any[] = [1]
+
+  delete() {
+    this.todoDataSerive.emptyArchive().subscribe()
+  }
 
 }
