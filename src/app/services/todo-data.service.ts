@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
+import { Todo } from '../models/todo';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class TodoDataService {
   }
 
   add(todo: any): Observable<any> {
-     return this.http.post(`${this.url}/todos/${this.dataBaseFolders[0]}.json`, todo)
+     return this.http.post(`${this.url}/${this.dataBaseFolders[1]}.json`, todo)
   }
 
   edit(id: string) {
@@ -28,17 +29,26 @@ export class TodoDataService {
     // logic here 
   }
 
-
-  fetchArchive() {
-    // logic here 
+  archive(): Observable<any> {
+    // logic here
+    return this.http.get<{[key: string]: Todo}>(`${this.url}/${this.dataBaseFolders[1]}.json`).pipe(map(data => {
+      const archiveData = []
+      for (let key in data) {
+        if (data.hasOwnProperty(key)) {
+          archiveData.push({...data[key], id: key})
+        }
+      }
+      return archiveData
+    }))
   }
 
   emptyArchive(): Observable<any> {
-    return this.http.delete(`${this.url}/todos/${this.dataBaseFolders[1]}.json`)
+    return this.http.delete(`${this.url}/${this.dataBaseFolders[1]}.json`)
   }
 
-  moveToArchive() {
-
+  moveToArchive(todo: Todo) {
+    // Need logic that will receive a deleted item from home and add it to archive
+    
   }
 
 }

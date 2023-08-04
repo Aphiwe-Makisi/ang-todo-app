@@ -7,7 +7,8 @@ import { ViewComponent } from './components/view/view.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
   {path: 'add-todo', component: AddComponent},
   {path: 'archive', component: ArchiveComponent},
   {path: 'view-todo', component: ViewComponent},

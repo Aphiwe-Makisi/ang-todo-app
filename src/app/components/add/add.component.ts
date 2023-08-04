@@ -16,7 +16,7 @@ export class AddComponent {
   constructor(private todoDataService: TodoDataService) { }
 
   save(todoForm: NgForm) {
-    let todo: Todo = {title: todoForm.value.title, description: todoForm.value.description, dateCreated: this.today , dueDate: todoForm.value.date, completed: false}
+    let todo: Todo = {title: todoForm.value.title, description: todoForm.value.description, dateCreated: this.today , dueDate: todoForm.value.date, completed: true}
     this.todoDataService.add(todo).subscribe()
     todoForm.reset()
   }

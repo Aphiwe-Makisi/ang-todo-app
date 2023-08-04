@@ -1,26 +1,27 @@
 <div class="container">
   <div class="text-center" >
-    <button [disabled]="archive.length === 0" class="btn btn-danger" (click)="delete()"><i class="fa-solid fa-trash"></i> Delete All</button>
+    <button [disabled]="archive && archive.length === 0" class="btn btn-danger" (click)="delete()"><i class="fa-solid fa-trash"></i> Delete All</button>
   </div>
-  <div class="row mt-4" *ngIf="archive.length !== 0; else empty">
+
+  <div class="d-flex align-center justify-content-center mt-3 alert alert-info" *ngIf="isLoading">
+    <div class="spinner-border me-3" role="status"></div>
+    <h5 class="text-center mb-0">Loading, please wait...</h5>
+  </div>
+
+  <div class="row mt-4" *ngIf="archive && archive.length !== 0; else empty">
 
     <div class="col-md-6 col-lg-4 p-0" *ngFor="let todo of archive">
       <div class="card m-1">
         <div class="card-body">
           <div class="card-title border-bottom border-2 d-flex justify-content-between align-center">
-            <h3>Title</h3>
-            <h5 class="text-success"><i class="fa-solid fa-check"></i> Completed</h5>
+            <h3>{{todo.title}}</h3>
+            <h5 class="text-success" *ngIf="todo.completed; else incomplete"><i class="fa-solid fa-check"></i> Completed</h5>
+            <ng-template #incomplete>
+              <h5 class="text-danger"><i class="fa-solid fa-xmark"></i> Incomplete</h5>
+            </ng-template>
           </div>
           <div class="card-text border-bottom border-2">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Consequuntur placeat dolorum, quas eaque tempora dicta aliquid
-              fuga vel pariatur sunt labore neque quam dolores alias cumque
-              temporibus illum quidem reprehenderit quibusdam! Beatae recusandae
-              rerum reiciendis enim, fugiat, minus adipisci illo doloribus nemo
-              corporis assumenda totam consequatur blanditiis maiores itaque
-              provident!
-            </p>
+            <p>{{todo.description}}</p>
           </div>
         </div>
       </div>
