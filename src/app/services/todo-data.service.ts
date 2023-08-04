@@ -9,16 +9,24 @@ import { Todo } from '../models/todo';
 export class TodoDataService {
 
   private url: string = 'https://angulartodo-e8d78-default-rtdb.firebaseio.com'
-  private dataBaseFolders: Array<string> = ['active', 'archive']
+  private dataBaseFolders: Array<string> = ['todos', 'archive']
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  fetchAll() {
-    // logic here
+  fetchAll(): Observable<any> {
+    return this.http.get<{[key: string]: Todo}>(`${this.url}/${this.dataBaseFolders[0]}.json`).pipe(map(data => {
+      const allTodos = []
+      for (let key in data) {
+        if (data.hasOwnProperty(key)) {
+          allTodos.push({...data[key], id: key})
+        }
+      }
+      return allTodos
+    }))
   }
 
   add(todo: any): Observable<any> {
-     return this.http.post(`${this.url}/${this.dataBaseFolders[1]}.json`, todo)
+     return this.http.post(`${this.url}/${this.dataBaseFolders[0]}.json`, todo)
   }
 
   edit(id: string) {
@@ -30,7 +38,6 @@ export class TodoDataService {
   }
 
   archive(): Observable<any> {
-    // logic here
     return this.http.get<{[key: string]: Todo}>(`${this.url}/${this.dataBaseFolders[1]}.json`).pipe(map(data => {
       const archiveData = []
       for (let key in data) {
@@ -48,7 +55,7 @@ export class TodoDataService {
 
   moveToArchive(todo: Todo) {
     // Need logic that will receive a deleted item from home and add it to archive
-    
+
   }
 
 }

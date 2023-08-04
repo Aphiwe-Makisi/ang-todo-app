@@ -1,32 +1,27 @@
 <div class="row">
 
-  <!-- <div class="d-flex align-center justify-content-center mt-3 alert alert-info" *ngIf="isLoading">
+  <div class="d-flex align-center justify-content-center mt-3 alert alert-info" *ngIf="isLoading">
     <div class="spinner-border me-3" role="status"></div>
     <h5 class="text-center mb-0">Loading, please wait...</h5>
-  </div> -->
-
-  <div class="col-md-6 col-lg-4 p-0">
+  </div>
+  
+  <div class="col-md-6 col-lg-4 p-0" *ngFor="let todo of todos">
     <div class="card m-1">
+      <span class="alert alert-success" *ngIf="todo.dateCreated === today">NEW</span>
      <div class="card-body">
-      <h2 class="card-title border-bottom border-2 p-2">Title</h2>
-      <p class="card-text border-bottom border-2 p-2 mb-1">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero similique
-        laboriosam neque veritatis consequuntur sed doloribus iure ullam
-        mollitia cumque expedita obcaecati, suscipit alias fugiat illo maiores
-        quam? Maxime quae commodi corporis animi laudantium error! Et officia,
-        soluta necessitatibus aperiam optio aut doloremque tempore expedita
-      </p>
+      <h2 class="card-title border-bottom border-2 p-2">{{todo.title}}</h2>
+      <p class="card-text border-bottom border-2 p-2 mb-1">{{todo.description}}</p>
       <div class="container border-bottom border-2">
-        <p class="mb-0">Date: <span class="text-primary">2023-07-27</span></p>
-        <p *ngIf="!isOverDue; else overdue" class="mb-0">Due date: <span class="text-success">2023-07-27</span></p>
+        <p class="mb-0">Date: <span class="text-primary">{{todo.dateCreated}}</span></p>
+        <!-- Need to apply logic for when over due -->
+        <p class="mb-0">Due date: <span class="text-success">{{todo.dueDate}}</span></p>
 
-        <!-- Display this when the todo is overdue -->
         <ng-template #overdue>
           <p class="mb-0">Due date: <span class="text-danger">Over due</span></p>
         </ng-template>
       </div>
       <div class="container text-center mt-2">
-        <button class="btn btn-warning" routerLink="view-todo"><i class="fa-solid fa-eye"></i> View</button>
+        <button class="btn btn-warning" [routerLink]="['view-todo', todo.id, todo.title]"><i class="fa-solid fa-eye"></i> View</button>
       </div>
      </div>
     </div>

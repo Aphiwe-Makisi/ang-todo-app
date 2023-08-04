@@ -3,3 +3,8 @@
 -webkit-box-shadow: 0px 2px 1px 1px rgba(158,158,158,0.7);
 -moz-box-shadow: 0px 2px 1px 1px rgba(158,158,158,0.7);
 }
+
+.alert-success {
+  width: fit-content;
+  padding: 0;
+}

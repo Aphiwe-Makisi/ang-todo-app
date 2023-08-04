@@ -8,12 +8,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent {
   title = 'ang-todo-app';
-
-  @ViewChild('addComponent') form!: NgForm
-
-  constructor() {
-    console.log(this.form);
-    
-  }
+  
+  constructor() {}
   
 }
