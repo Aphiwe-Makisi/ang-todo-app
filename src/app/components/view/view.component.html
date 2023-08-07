@@ -11,9 +11,28 @@
       <p class="card-text border-bottom border-2 pb-2 mb-2">{{currentTodo?.description}}</p>
       <div class="text-center">
           <button class="btn btn-success m-1" title="bottom"><i class="fa-solid fa-check"></i></button>
-          <button class="btn btn-danger m-1"><i class="fa-solid fa-trash"></i></button>
+          <button class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#confirm" type="button"><i class="fa-solid fa-trash"></i></button>
           <button class="btn btn-primary m-1"><i class="fa-solid fa-pen"></i></button>
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="confirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 text-danger" id="staticBackdropLabel"><i class="fa-solid fa-triangle-exclamation"></i> DANGER</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete {{ currentTodo?.title }}?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

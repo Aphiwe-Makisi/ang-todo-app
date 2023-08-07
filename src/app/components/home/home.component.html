@@ -14,10 +14,10 @@
       <div class="container border-bottom border-2">
         <p class="mb-0">Date: <span class="text-primary">{{todo.dateCreated}}</span></p>
         <!-- Need to apply logic for when over due -->
-        <p class="mb-0">Due date: <span class="text-success">{{todo.dueDate}}</span></p>
+        <p class="mb-0" *ngIf="today < todo.dueDate; else overdue" >Due date: <span class="text-success">{{todo.dueDate}}</span></p>
 
         <ng-template #overdue>
-          <p class="mb-0">Due date: <span class="text-danger">Over due</span></p>
+          <p class="mb-0">Due date: <span class="text-danger">{{ todo.dueDate }}<strong> Over due</strong></span></p>
         </ng-template>
       </div>
       <div class="container text-center mt-2">
