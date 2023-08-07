@@ -1,0 +1,19 @@
+<div class="container">
+
+  <div class="d-flex align-center justify-content-center mt-3 alert alert-info" *ngIf="isLoading">
+    <div class="spinner-border me-3" role="status"></div>
+    <h5 class="text-center mb-0">Loading, please wait...</h5>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title">{{currentTodo?.title}}</h1>
+      <p class="card-text border-bottom border-2 pb-2 mb-2">{{currentTodo?.description}}</p>
+      <div class="text-center">
+          <button class="btn btn-success m-1" title="bottom"><i class="fa-solid fa-check"></i></button>
+          <button class="btn btn-danger m-1"><i class="fa-solid fa-trash"></i></button>
+          <button class="btn btn-primary m-1"><i class="fa-solid fa-pen"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
