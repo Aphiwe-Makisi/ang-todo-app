@@ -10,7 +10,7 @@
       <h1 class="card-title">{{currentTodo?.title}}</h1>
       <p class="card-text border-bottom border-2 pb-2 mb-2">{{currentTodo?.description}}</p>
       <div class="text-center">
-          <button class="btn btn-success m-1"><i class="fa-solid fa-check"></i></button>
+          <button class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#complete" type="button"><i class="fa-solid fa-check"></i></button>
           <button class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#confirm" type="button"><i class="fa-solid fa-trash"></i></button>
           <button class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#edit" type="button"><i class="fa-solid fa-pen"></i></button>
       </div>
@@ -29,8 +29,8 @@
           Are you sure you want to delete {{ currentTodo?.title }}?
         </div>
         <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteTodo(currentTodo?.id)"><i class="fa-solid fa-trash"></i> Delete</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Delete</button>
         </div>
       </div>
     </div>
@@ -55,12 +55,31 @@
           </div>
           <div class="form-group">
             <label class="form-label">Due date</label>
-            <input type="date" class="form-control">
+            <input type="date" class="form-control" [min]="today">
           </div>
         </div>
         <div class="modal-footer">
+          <button id="liveToastBtn" type="button" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Save</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for task completion confirmation -->
+  <div class="modal fade" id="complete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 text-primary" id="staticBackdropLabel"><i class="fa-solid fa-pen"></i> Complete {{ currentTodo?.title }}.</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to mark {{ currentTodo?.title }} as complete?
+        </div>
+        <div class="modal-footer">
+          <button id="liveToastBtn" type="button" class="btn btn-success"><i class="fa-solid fa-check"></i> Complete</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

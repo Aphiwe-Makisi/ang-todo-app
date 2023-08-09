@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Todo } from 'src/app/models/todo';
 import { TodoDataService } from 'src/app/services/todo-data.service';
 
@@ -14,8 +14,10 @@ export class ViewComponent implements OnInit {
   todoArray: Todo[] = []
   currentTodo!: any
   isLoading!: boolean
+  date = new Date()
+  today = this.date.toISOString().split('T')[0]
 
-  constructor(private todoDataService: TodoDataService, private activatedRoute: ActivatedRoute) {
+  constructor(private todoDataService: TodoDataService, private activatedRoute: ActivatedRoute, private router: Router) {
     
   }
 
@@ -27,6 +29,10 @@ export class ViewComponent implements OnInit {
 
     this.isLoading = true
     // assign the data fetched by the service to the array when the component is init.
+    this.fetchData()
+  }
+
+  fetchData() {
     this.todoDataService.fetchAll().subscribe(data => {
       this.todoArray = data
       this.setCurrentTodo()
@@ -48,5 +54,22 @@ export class ViewComponent implements OnInit {
 
     // then assign the global current todo with the local current todo
     this.currentTodo = currentTodo
+  }
+
+  completeTodo() {
+
+  }
+
+  deleteTodo(id: string) {
+    this.isLoading = true
+    this.todoDataService.delete(id).subscribe(() => {
+      this.isLoading = false
+      this.router.navigate([''])
+    })
+    
+  }
+
+  editTodo() {
+
   }
 }

@@ -6,18 +6,17 @@
   </div>
   
   <div class="col-md-6 col-lg-4 p-0" *ngFor="let todo of todos">
-    <div class="card m-1">
-      <span class="alert alert-success" *ngIf="todo.dateCreated === today">NEW</span>
+    <div class="card m-1 position-relative">
+      <span class="alert alert-success position-absolute" *ngIf="todo.dateCreated === today">NEW</span>
      <div class="card-body">
       <h2 class="card-title border-bottom border-2 p-2">{{todo.title}}</h2>
       <p class="card-text border-bottom border-2 p-2 mb-1">{{todo.description}}</p>
       <div class="container border-bottom border-2">
         <p class="mb-0">Date: <span class="text-primary">{{todo.dateCreated}}</span></p>
-        <!-- Need to apply logic for when over due -->
         <p class="mb-0" *ngIf="today < todo.dueDate; else overdue" >Due date: <span class="text-success">{{todo.dueDate}}</span></p>
 
         <ng-template #overdue>
-          <p class="mb-0">Due date: <span class="text-danger">{{ todo.dueDate }}<strong> Over due</strong></span></p>
+          <p class="mb-0">Due date: <span class="text-danger">{{ todo.dueDate }}<strong> Overdue</strong></span></p>
         </ng-template>
       </div>
       <div class="container text-center mt-2">

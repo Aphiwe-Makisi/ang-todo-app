@@ -18,6 +18,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true
+    this.fetchData()
+  }
+
+  fetchData() {
     this.todoDataService.fetchAll().subscribe(data => {
       this.todos = data
       this.isLoading = false

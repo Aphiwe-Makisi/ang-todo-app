@@ -8,3 +8,8 @@
   width: fit-content;
   padding: 0;
 }
+
+.alert-success {
+  right: 2px;
+  top: 2px;
+}

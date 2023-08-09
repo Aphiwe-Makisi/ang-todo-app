@@ -33,8 +33,9 @@ export class TodoDataService {
     // logic here
   }
 
-  delete() {
+  delete(id: string) {
     // logic here 
+    return this.http.delete(`${this.url}/${this.dataBaseFolders[0]}/${id}.json`)
   }
 
   archive(): Observable<any> {
