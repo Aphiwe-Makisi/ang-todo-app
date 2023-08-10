@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Todo } from 'src/app/models/todo';
 import { TodoDataService } from 'src/app/services/todo-data.service';
@@ -51,13 +52,19 @@ export class ViewComponent implements OnInit {
         currentTodo = todo
       }
     }
-
     // then assign the global current todo with the local current todo
     this.currentTodo = currentTodo
   }
 
   completeTodo() {
-
+    let completedTodo = {...this.currentTodo, completed: true}
+    this.isLoading = true
+    this.todoDataService.edit({...completedTodo, id: this.currentTodo.id}).subscribe()
+    this.todoDataService.moveToArchive(completedTodo).subscribe()
+    this.todoDataService.delete(completedTodo.id).subscribe()
+    this.fetchData()
+    this.isLoading = false
+    this.router.navigate([''])
   }
 
   deleteTodo(id: string) {
@@ -69,7 +76,8 @@ export class ViewComponent implements OnInit {
     
   }
 
-  editTodo() {
-
+  editTodo(editForm: NgForm) {
+    let updatedtodo: Todo = {title: editForm.value.title, description: editForm.value.desc, dateCreated: this.currentTodo.dateCreated , dueDate: editForm.value.date, completed: false}
+    this.todoDataService.edit({...updatedtodo, id: this.currentTodo.id}).subscribe()
   }
 }

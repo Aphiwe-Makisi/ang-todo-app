@@ -16,10 +16,15 @@ export class ArchiveComponent implements OnInit {
 
   delete() {
     this.todoDataSerive.emptyArchive().subscribe()
+    this.isLoading = true
+    this.fetchData()
   }
 
   ngOnInit(): void {
-    this.isLoading = true
+    this.fetchData()
+  }
+
+  fetchData() {
     this.todoDataSerive.archive().subscribe(data => {
       this.archive = data
       this.isLoading = false

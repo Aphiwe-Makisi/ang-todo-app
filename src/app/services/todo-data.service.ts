@@ -29,8 +29,9 @@ export class TodoDataService {
      return this.http.post(`${this.url}/${this.dataBaseFolders[0]}.json`, todo)
   }
 
-  edit(id: string) {
+  edit(todo: Todo): Observable<any> {
     // logic here
+    return this.http.put(`${this.url}/${this.dataBaseFolders[0]}/${todo.id}.json`, todo)
   }
 
   delete(id: string) {
@@ -54,9 +55,9 @@ export class TodoDataService {
     return this.http.delete(`${this.url}/${this.dataBaseFolders[1]}.json`)
   }
 
-  moveToArchive(todo: Todo) {
-    // Need logic that will receive a deleted item from home and add it to archive
-
+  moveToArchive(todo: Todo): Observable<any> {
+    // logic here
+    return this.http.post(`${this.url}/${this.dataBaseFolders[1]}.json`, todo)
   }
 
 }

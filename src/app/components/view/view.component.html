@@ -45,22 +45,25 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="form-group">
-            <label class="form-label">Title</label>
-            <input type="text" class="form-control">
-          </div>
-          <div class="form-group">
-            <label class="from-label">Description</label>
-            <textarea cols="30" rows="10" class="form-control"></textarea>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Due date</label>
-            <input type="date" class="form-control" [min]="today">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button id="liveToastBtn" type="button" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Save</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <form class="form" #editForm="ngForm" (click)="editTodo(editForm)">
+            <div class="form-group">
+              <label class="form-label">Title</label>
+              <input type="text" class="form-control" #title name="title" [(ngModel)]="currentTodo.title">
+            </div>
+            <div class="form-group">
+              <label class="from-label">Description</label>
+              <textarea cols="30" rows="10" class="form-control" #desc name="desc" [(ngModel)]="currentTodo.description"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Due date</label>
+              <input type="date" class="form-control" [min]="today" #date name="date" [(ngModel)]="currentTodo.dueDate">
+            </div>
+
+            <div class="modal-footer">
+              <button id="liveToastBtn" type="submit" class="btn btn-success" data-bs-dismiss="modal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -78,7 +81,7 @@
           Are you sure you want to mark {{ currentTodo?.title }} as complete?
         </div>
         <div class="modal-footer">
-          <button id="liveToastBtn" type="button" class="btn btn-success"><i class="fa-solid fa-check"></i> Complete</button>
+          <button id="liveToastBtn" type="button" data-bs-dismiss="modal" class="btn btn-success" (click)="completeTodo()"><i class="fa-solid fa-check"></i> Complete</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>

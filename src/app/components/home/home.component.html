@@ -4,7 +4,12 @@
     <div class="spinner-border me-3" role="status"></div>
     <h5 class="text-center mb-0">Loading, please wait...</h5>
   </div>
-  
+
+  <div *ngIf="todos.length <= 0" class="text-center alert alert-dark">
+    <h5>You have no todos available</h5>
+    <button class="btn btn-success" routerLink="add-todo"><i class="fa-solid fa-plus"></i> ADD NEW</button>
+  </div>
+
   <div class="col-md-6 col-lg-4 p-0" *ngFor="let todo of todos">
     <div class="card m-1 position-relative">
       <span class="alert alert-success position-absolute" *ngIf="todo.dateCreated === today">NEW</span>
